@@ -41,11 +41,18 @@
     <div class="container">
         <h1>Welcome to My Quantum Projects</h1>
         <p>Explore my work in quantum computing, including simulations and algorithms.</p>
-        <h2>Featured Project: Quantum Tunneling Simulation</h2>
+        
+        <h2>More Projects</h2>
+        <ul>
+            <li><a href="#tunneling">Quantum Tunneling Simulation</a></li>
+            <li><a href="#algorithm">Quantum Algorithm Research</a></li>
+            <li><a href="#simulation">Qiskit Circuit Simulations</a></li>
+            <li><a href="#machine-learning">Quantum Machine Learning Experiments</a></li>
+        </ul>
+        
+        <h2 id="tunneling">Quantum Tunneling Simulation</h2>
         <p>Check out my quantum tunneling simulation using Qiskit.</p>
         <a href="https://github.com/YOUR_GITHUB_USERNAME/QuantumTunnelingQiskit" target="_blank">View on GitHub</a>
-        <br><br>
-        <h2>Code Snippet</h2>
         <pre>
 from qiskit import QuantumCircuit, transpile
 from qiskit_aer import Aer
@@ -97,13 +104,52 @@ print(counts)
 end = time.time()
 print(end - start)
         </pre>
-        <br>
-        <h2>More Projects</h2>
-        <ul>
-            <li><a href="#">Quantum Algorithm Research</a></li>
-            <li><a href="#">Qiskit Circuit Simulations</a></li>
-            <li><a href="#">Quantum Machine Learning Experiments</a></li>
-        </ul>
+        
+        <h2 id="algorithm">Quantum Algorithm Research</h2>
+        <p>Exploring novel quantum algorithms.</p>
+        <a href="https://github.com/YOUR_GITHUB_USERNAME/QuantumAlgorithmResearch" target="_blank">View on GitHub</a>
+        <pre>
+from qiskit import QuantumCircuit
+
+circuit = QuantumCircuit(3)
+circuit.h(0)
+circuit.cx(0, 1)
+circuit.cx(1, 2)
+circuit.measure_all()
+        </pre>
+        
+        <h2 id="simulation">Qiskit Circuit Simulations</h2>
+        <p>Simulating quantum circuits using Qiskit.</p>
+        <a href="https://github.com/YOUR_GITHUB_USERNAME/QiskitCircuitSimulations" target="_blank">View on GitHub</a>
+        <pre>
+from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+from qiskit import Aer, execute
+
+qr = QuantumRegister(2)
+cr = ClassicalRegister(2)
+circuit = QuantumCircuit(qr, cr)
+
+circuit.h(qr[0])
+circuit.cx(qr[0], qr[1])
+circuit.measure(qr, cr)
+
+simulator = Aer.get_backend('qasm_simulator')
+result = execute(circuit, simulator, shots=1024).result()
+print(result.get_counts())
+        </pre>
+        
+        <h2 id="machine-learning">Quantum Machine Learning Experiments</h2>
+        <p>Exploring quantum machine learning techniques.</p>
+        <a href="https://github.com/YOUR_GITHUB_USERNAME/QuantumML" target="_blank">View on GitHub</a>
+        <pre>
+from qiskit_machine_learning.algorithms import VQC
+from qiskit.circuit.library import RealAmplitudes
+from qiskit_machine_learning.kernels import QuantumKernel
+
+feature_map = RealAmplitudes(2, entanglement='linear')
+kernel = QuantumKernel(feature_map=feature_map)
+        </pre>
+        
         <p>Stay tuned for more updates!</p>
     </div>
 </body>
