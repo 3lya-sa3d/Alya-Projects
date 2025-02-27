@@ -1,0 +1,57 @@
+
+
+
+
+
+
+
+
+from qiskit import QuantumCircuit, transpile
+from qiskit_aer import Aer
+import numpy as np
+import time
+
+# Start the timer
+start = time.time()
+# Define the target password (for simplicity, in binary)
+target_password = '1001'
+# Number of qubits
+n = len(target_password)
+# Create a quantum circuit with n qubits and n classical bits
+circuit = QuantumCircuit(n)
+# Initialize the qubits to superposition
+circuit.h(range(n))
+# Define the oracle function
+def oracle(circuit, target):
+    # Flip the output if the input matches the target password
+    for i in range(n):
+        if target[i] == '0':
+            circuit.x(i)
+    circuit.h(n-1)
+    circuit.to_gate().control(n)
+    circuit.h(n-1)
+    for i in range(n):
+        if target[i] == '0':
+            circuit.x(i)
+# Add the oracle to the circuit
+oracle(circuit, target_password)
+# Apply Grover's diffusion operator
+circuit.h(range(n))
+circuit.x(range(n))
+circuit.h(n-1)
+circuit.h(n-1)
+circuit.x(range(n))
+circuit.h(range(n))
+# Measure the qubits
+circuit.measure_all()
+# Simulate the circuit
+simulator = Aer.get_backend('qasm_simulator')
+transpiled_circuit = transpile(circuit, backend=simulator)
+job = simulator.run(transpiled_circuit)
+result = job.result()
+# Get the counts of the results
+counts = result.get_counts(circuit)
+print(counts)
+# Get time
+end = time.time()
+print(end - start)
